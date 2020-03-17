@@ -21,7 +21,7 @@ Sub ImportValues(p, q, si)
     ' pwe: Default Values
     ' pli: Lookup-Identifier
     pid = FindColumn(o, "Identifier", 1)
-    pwe = FindColumn(o, "Wertemenge", 1)
+    pwe = FindColumn(o, "Default Values", 1)
     pli = FindColumn(o, "Lookup-Identifier", 1)
     
     ' We can use the identifier of the attribute names which are also within this sheet as a reference which default values need to be copied.
@@ -95,7 +95,7 @@ Sub PrepareImport(o)
     Loop
     
     ' Now move the article numbers in the positions below
-    j = FindSubstringInColumn(o, "Artikelnummer", 6)
+    j = FindSubstringInColumn(o, "Article Number", 6)
     o.Range(o.Cells(7, j), o.Cells(i, j)).Cut Destination:=o.Cells(i1, j)
     
     ' If we have columns with multi default values, combine them with " | " as the delimiter
@@ -107,7 +107,6 @@ Sub PrepareImport(o)
                 o.Cells(k, j).MergeCells = False
             Next
             ' Check if the supplier actually used multiple values
-            ' Wir prüfen Zeile für Zeile, ob es mehrfache Einträge gibt
             For k = 7 To i
                 b = True
                 x = j
